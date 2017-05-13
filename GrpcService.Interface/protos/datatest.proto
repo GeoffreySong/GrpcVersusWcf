@@ -1,0 +1,30 @@
+﻿syntax = "proto3";
+
+option	csharp_namespace = "GrpcService.Interface";
+package datatest;
+
+service DataTest {
+  rpc Warmup(EmptyMessge) returns (EmptyMessge){}
+  rpc GetTestData (DataRequest) returns (DataResponse) {}
+}
+
+message EmptyMessge{}
+
+message DataRequest{
+	enum DataType{
+		USER = 0;
+		COMPANY = 1;
+		CLIENT = 2;
+	}
+	DataType Type = 1;
+}
+
+message DataRecord{
+	uint32 Id = 1;
+	string Name = 2;
+	string description = 3;
+}
+
+message DataResponse{
+	repeated DataRecord Data = 1;
+}
